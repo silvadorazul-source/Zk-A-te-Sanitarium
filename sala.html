@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZKATE · LA SALA DE LA CARNE</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=VT323&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos extra solo para esta página */
+        .sala-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 70vh;
+            padding: 30px 20px;
+        }
+        .sala-container h2 {
+            font-family: 'VT323', monospace;
+            font-size: 3rem;
+            color: #fff;
+            letter-spacing: 8px;
+            text-shadow: 0 0 20px rgba(139,0,0,0.3);
+            margin-bottom: 20px;
+            border-left: 3px solid #8b0000;
+            padding-left: 20px;
+        }
+        .video-grande {
+            width: 100%;
+            max-width: 900px;
+            aspect-ratio: 16/9;
+            border: 2px solid #1a1a1a;
+            box-shadow: 8px 8px 0px rgba(0,0,0,0.6);
+            background: #000;
+        }
+        .video-grande iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            filter: grayscale(0.3) contrast(1.1);
+        }
+        .video-grande:hover iframe {
+            filter: grayscale(0) contrast(1);
+        }
+        .sala-desc {
+            margin-top: 20px;
+            font-family: 'Special Elite', cursive;
+            color: #888;
+            letter-spacing: 4px;
+            font-size: 0.9rem;
+            text-align: center;
+            max-width: 600px;
+        }
+        @media (max-width: 600px) {
+            .sala-container h2 {
+                font-size: 2rem;
+                letter-spacing: 4px;
+            }
+            .video-grande {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ======================================== -->
+    <!-- HEADER CAÓTICO -->
+    <!-- ======================================== -->
+    <header class="header">
+        <div class="header-left">
+            <span class="ascii-art">[ ZKATE ]</span>
+            <span class="header-sub">SANITARIUM</span>
+        </div>
+        <div class="header-right">
+            <span class="date-stamp">24 / 8 / 2026 // 05:17:55 pm</span>
+        </div>
+    </header>
+
+    <!-- ======================================== -->
+    <!-- NAVEGACIÓN SUPERIOR (con "sala de la carne") -->
+    <!-- ======================================== -->
+    <nav class="top-nav">
+        <a href="index.html">compra en línea</a>
+        <span class="nav-sep">·</span>
+        <a href="skatecas.html">SkateCAS</a>
+        <span class="nav-sep">·</span>
+        <a href="sala.html" class="active-sala">SALONDELACARNE</a>
+        <span class="nav-sep">·</span>
+        <a href="#">blog</a>
+        <span class="nav-sep">·</span>
+        <a href="#">111241</a>
+        <span class="nav-sep">·</span>
+        <a href="#">suscribete</a>
+        <span class="nav-sep">·</span>
+        <a href="#" class="boring">somos aburridos... y que?</a>
+    </nav>
+
+    <!-- ======================================== -->
+    <!-- CATEGORÍAS (igual que siempre) -->
+    <!-- ======================================== -->
+    <section class="categories">
+        <a href="abrigos.html">Abrigos</a>
+        <a href="hardware.html">Hardware</a>
+        <a href="accesorios.html">Accesorios</a>
+        <a href="camisetas.html">Camisetas</a>
+        <a href="galeria.html">Galería</a>
+        <a href="pantalones.html">Pantalones</a>
+        <a href="tenis.html">Tenis</a>
+        <a href="gorros.html">Gorros</a>
+        <a href="mochilas.html">Mochilas</a>
+        <a href="parches.html">Parches</a>
+    </section>
+
+    <!-- ======================================== -->
+    <!-- DIVIDER -->
+    <!-- ======================================== -->
+    <div class="divider">
+        <span>✕</span><span>✕</span><span>✕</span><span>✕</span><span>✕</span>
+        <span>✕</span><span>✕</span><span>✕</span><span>✕</span><span>✕</span>
+    </div>
+
+    <!-- ======================================== -->
+    <!-- CONTENIDO: LA SALA DE LA CARNE -->
+    <!-- ======================================== -->
+    <div class="sala-container">
+        <h2>// LA SALA DE LA CARNE //</h2>
+        <div class="video-grande">
+    <video class="video-player" autoplay muted loop playsinline>
+        <source src="Hall of Meat-Thrasher (1999).mp4" type="video/mp4">
+        <!-- Fallback si el navegador no soporta el formato -->
+        Tu navegador no soporta el elemento de video.
+    </video>
+</div>
+        </div>
+        <p class="sala-desc">-///-Vive-rapido-y-muere-Joven-///-Una-pela-o-nada-///-✦</p>
+    </div>
+
+    <!-- ======================================== -->
+    <!-- DIVIDER -->
+    <!-- ======================================== -->
+    <div class="divider">
+        <span>✕</span><span>✕</span><span>✕</span><span>✕</span><span>✕</span>
+        <span>✕</span><span>✕</span><span>✕</span><span>✕</span><span>✕</span>
+    </div>
+
+    <!-- ======================================== -->
+    <!-- FOOTER -->
+    <!-- ======================================== -->
+    <footer class="footer">
+        <p>✕ ZKATE SANITARIUM · 2026 ✕</p>
+        <p class="footer-small">sin reglas · con estilo · somos la escena</p>
+        <p class="footer-tiny">hecho en bogotá · underground · skate · independiente</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
