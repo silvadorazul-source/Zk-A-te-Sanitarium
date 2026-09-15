@@ -1018,4 +1018,18 @@ a:hover {
     .link-list li:hover .contact-box {
         transform: translateY(0) scale(1);
     }
+    .punk-glitch {
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-weight: bold;
+    color: #fff;
+    position: relative;
+    animation: glitch 1.5s infinite;
+}
+@keyframes glitch {
+    0%, 100% { text-shadow: 2px 2px 0 #8b0000, -2px -2px 0 #00ff00; }
+    25%      { text-shadow: -2px 2px 0 #8b0000, 2px -2px 0 #00ff00; }
+    50%      { text-shadow: 2px -2px 0 #8b0000, -2px 2px 0 #00ff00; }
+    75%      { text-shadow: -2px -2px 0 #8b0000, 2px 2px 0 #00ff00; }
+}
 }
