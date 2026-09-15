@@ -774,10 +774,13 @@ a:hover {
 
 /* Si quieres que el video tenga bordes oscuros como el iframe */
 .video-grande {
+    width: 100%;
+    max-width: 1400px;   /* sube de 900 a 1400, o quítalo del todo */
+    aspect-ratio: 16/9;
     border: 2px solid #1a1a1a;
     box-shadow: 8px 8px 0px rgba(0,0,0,0.6);
     background: #000;
-    overflow: hidden;
+    margin: 0 auto;      /* para centrarlo */
 }
 
 /* ======================================== */
