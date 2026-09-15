@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZKATE · SKATECAS</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=VT323&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos extra para la página de SkateCAS */
+        .skatecas-header {
+            padding: 20px 0 10px 0;
+            text-align: center;
+            border-bottom: 1px solid #1a1a1a;
+        }
+        .skatecas-header h2 {
+            font-family: 'VT323', monospace;
+            font-size: 2.5rem;
+            color: #fff;
+            letter-spacing: 8px;
+            text-shadow: 0 0 20px rgba(139,0,0,0.2);
+        }
+        .skatecas-header p {
+            font-family: 'Special Elite', cursive;
+            font-size: 0.8rem;
+            color: #555;
+            letter-spacing: 4px;
+            margin-top: 4px;
+        }
+
+        /* Mapa */
+        .map-container {
+            padding: 25px 0 15px 0;
+        }
+        .map-container iframe {
+            width: 100%;
+            height: 450px;
+            border: 2px solid #1a1a1a;
+            box-shadow: 6px 6px 0px rgba(0,0,0,0.4);
+            filter: grayscale(0.2) contrast(1.1);
+            transition: 0.5s;
+        }
+        .map-container iframe:hover {
+            filter: grayscale(0) contrast(1);
+        }
+
+        /* Lista de skateparks */
+        .spots-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            padding: 20px 0 10px 0;
+        }
+
+        .spot-card {
+            background: rgba(10, 10, 10, 0.85);
+            border: 1px solid #1a1a1a;
+            padding: 15px 18px;
+            box-shadow: 4px 4px 0px rgba(0,0,0,0.4);
+            transition: 0.3s;
+            clip-path: polygon(0% 0%, 100% 0%, 98% 98%, 2% 100%);
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .spot-card:nth-child(odd) {
+            transform: rotate(-0.5deg) translateY(-2px);
+        }
+        .spot-card:nth-child(3n) {
+            transform: rotate(1.2deg) translateY(3px);
+        }
+        .spot-card:nth-child(5n+2) {
+            transform: rotate(-0.8deg) translateY(4px);
+        }
+
+        .spot-card:hover {
+            transform: scale(1.02) rotate(0deg) !important;
+            border-color: #333;
+            box-shadow: 6px 6px 0px rgba(139, 0, 0, 0.15);
+            z-index: 10;
+        }
+
+        .spot-name {
+            font-family: 'VT323', monospace;
+            font-size: 1.2rem;
+            color: #fff;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .spot-location {
+            font-family: 'Special Elite', cursive;
+            font-size: 0.75rem;
+            color: #888;
+            letter-spacing: 2px;
+        }
+
+        .spot-desc {
+            font-family: 'Special Elite', cursive;
+            font-size: 0.7rem;
+            color: #666;
+            letter-spacing: 1px;
+            margin-top: 4px;
+            line-height: 1.6;
+        }
+
+        .spot-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 6px;
+        }
+
+        .spot-tag {
+            font-family: 'VT323', monospace;
+            font-size: 0.55rem;
+            color: #777;
+            border: 1px solid #2a2a2a;
+            padding: 1px 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            background: rgba(0,0,0,0.3);
+        }
+
+        .spot-tag.highlight {
+            color: #8b0000;
+            border-color: #8b0000;
+            opacity: 0.7;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .skatecas-header h2 {
+                font-size: 1.8rem;
+                letter-spacing: 4px;
+            }
+            .map-container iframe {
+                height: 280px;
+            }
+            .spots-list {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            .spot-card:nth-child(odd),
+            .spot-card:nth-child(3n),
+            .spot-card:nth-child(5n+2) {
+                transform: rotate(0deg) !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ======================================== -->
+    <!-- HEADER CAÓTICO -->
+    <!-- ======================================== -->
+    <header class="header">
+        <div class="header-left">
+            <span class="ascii-art">[ ZKATE ]</span>
+            <span class="header-sub">SANITARIUM</span>
+        </div>
+        <div class="header-right">
+            <span class="date-stamp">24 / 8 / 2026 // 05:17:55 pm</span>
+        </div>
+    </header>
+
+    <!-- ======================================== -->
+    <!-- NAVEGACIÓN SUPERIOR (SkateCAS resaltado) -->
+    <!-- ======================================== -->
+    <nav class="top-nav">
+        <a href="index.html">compra en línea</a>
+        <span class="nav-sep">·</span>
+        <a href="skatecas.html" class="active-skatecas">SkateCAS</a>
+        <span class="nav-sep">·</span>
+        <a href="sala.html">sala de la carne</a>
+        <span class="nav-sep">·</span>
+        <a href="#">blog</a>
+        <span class="nav-sep">·</span>
+        <a href="#">111241</a>
+        <span class="nav-sep">·</span>
+        <a href="#">suscribete</a>
+        <span class="nav-sep">·</span>
+        <a href="#" class="boring">somos aburridos... y que?</a>
+    </nav>
+
+    <!-- ======================================== -->
+    <!-- CATEGORÍAS -->
+    <!-- ======================================== -->
+    <section class="categories">
+        <a href="camisetas.html">Camisetas</a>
+        <a href="abrigos.html">Abrigos</a>
+        <a href="hardware.html">Hardware</a>
+        <a href="accesorios.html">Accesorios</a>
+        <a href="galeria.html">Galería</a>
+        <a href="pantalones.html">Pantalones</a>
+        <a href="tenis.html">Tenis</a>
+        <a href="gorros.html">Gorros</a>
+        <a href="mochilas.html">Mochilas</a>
+        <a href="parches.html">Parches</a>
+    </section>
+
+    <!-- ======================================== -->
+    <!-- DIVIDER -->
+    <!-- ======================================== -->
+    <div class="divider">
+        <span>✕</span><span>✕</span><span>✕</span><span>✕</span><span>✕</span>
+        <span>✕</span><span>✕</span><span>✕</span><span>✕</span><span>✕</span>
+    </div>
+
+    <!-- ======================================== -->
+    <!-- ENCABEZADO DE SKATECAS -->
+    <!-- ======================================== -->
+    <div class="skatecas-header">
+        <h2>// SKATECAS //</h2>
+        <p>guía de skateparks en bogotá · escena local · underground</p>
+    </div>
+
+    <!-- ======================================== -->
+    <!-- MAPA DE GOOGLE MAPS -->
+    <!-- ======================================== -->
+    <div class="map-container">
+        <!-- Google Maps embed centrado en Bogotá -->
+        <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d254508.38917800027!2d-74.27246616450718!3d4.648283724814731!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f9bfd2da6cb29%3A0x239d6355208f78e8!2sBogot%C3%A1!5e0!3m2!1ses!2sco!4v1726789123456!5m2!1ses!2sco" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+    </div>
+
+    <!-- ======================================== -->
+    <!-- LISTA DE SKATEPARKS -->
+    <!-- ======================================== -->
+    <div class="page-header" style="padding-top:10px;">
+        <span class="page-title">// SKATEPARKS //</span>
+        <span class="page-count">[ 12 ]</span>
+    </div>
+
+    <section class="spots-list">
+
+        <!-- 1 -->
+        <div class="spot-card">
+            <span class="spot-name">// FONTANAR DEL RÍO //</span>
+            <span class="spot-location">📍 Suba · Calle 134 # 147A - 40</span>
+            <p class="spot-desc">Uno de los skateparks más grandes de Bogotá con 4.660 m². Tiene piloto de uso nocturno. Ideal para todos los niveles.</p>
+            <div class="spot-tags">
+                <span class="spot-tag highlight">🏆 GRANDE</span>
+                <span class="spot-tag">🌙 NOCTURNO</span>
+                <span class="spot-tag">🛹 TODOS NIVELES</span>
+            </div>
+        </div>
+
+        <!-- 2 -->
+        <div class="spot-card">
+            <span class="spot-name">// EL CAMPÍN //</span>
+            <span class="spot-location">📍 Teusaquillo · Cra 30 # 63 - 10</span>
+            <p class="spot-desc">Ubicado junto al Movistar Arena. Muy concurrido los fines de semana. Zona con mucha vibra y eventos de skate.</p>
+            <div class="spot-tags">
+                <span class="spot-tag highlight">🔥 CONCURRIDO</span>
+                <span class="spot-tag">🎪 EVENTOS</span>
+            </div>
+        </div>
+
+        <!-- 3 -->
+        <div class="spot-card">
+            <span class="spot-name">// GILMA JIMÉNEZ //</span>
+            <span class="spot-location">📍 Kennedy · Calle 51 A Sur # 82 A - 16</span>
+            <p class="spot-desc">Skatepark con buen flujo y rampas variadas. Un punto clave en el sur de la ciudad.</p>
+            <div class="spot-tags">
+                <span class="spot-tag">🛹 SUR</span>
+                <span class="spot-tag highlight">⭐ VARIADO</span>
+            </div>
+        </div>
+
+        <!-- 4 -->
+        <div class="spot-card">
+            <span class="spot-name">// TERCER MILENIO //</span>
+            <span class="spot-location">📍 Centro · Calle 6 a 9 con Cra 10</span>
+            <p class="spot-desc">Uno de los más clásicos y emblemáticos de Bogotá. En pleno centro, con mucha historia y skaters de todas las edades.</p>
+            <div class="spot-tags">
+                <span class="spot-tag highlight">🏛️ CLÁSICO</span>
+                <span class="spot-tag">👥 TODOS</span>
+            </div>
+        </div>
+
+        <!-- 5 -->
+        <div class="spot-card">
+            <span class="spot-name">// TOBERÍN //</span>
+            <span class="spot-location">📍 Usaquén · Calle 165 # 7 - 00</span>
+            <p class="spot-desc">Zona norte con un skatepark bien mantenido y buena comunidad. Ideal para sesiones tranquilas.</p>
+            <div class="spot-tags">
+                <span class="spot-tag">🌳 NORTE</span>
+                <span class="spot-tag highlight">✨ TRANQUILO</span>
+            </div>
+        </div>
+
+        <!-- 6 -->
+        <div class="spot-card">
+            <span class="spot-name">// MOVISTAR ARENA //</span>
+            <span class="spot-location">📍 Teusaquillo · Cra 30 # 63 - 10</span>
+            <p class="spot-desc">Skatepark adjunto al estadio. Concreto de calidad y buena iluminación. Punto de encuentro para skaters de toda la ciudad.</p>
+            <div class="spot-tags">
+                <span class="spot-tag highlight">🏟️ ESTADIO</span>
+                <span class="spot-tag">💡 ILUMINADO</span>
+            </div>
+        </div>
+
+        <!-- 7 -->
+        <div class="spot-card">
+            <span class="spot-name">// BELLAVISTA //</span>
+            <span class="spot-location">📍 Suba · Calle 134 # 147A - 40</span>
+            <p class="spot-desc">Skatepark con rampas de tamaño medio. Buena opción para practicar y mejorar habilidades.</p>
+            <div class="spot-tags">
+                <span class="spot-tag">🛹 MEDIO</span>
+                <span class="spot-tag highlight">📈 PROGRESO</span>
+            </div>
+        </div>
+
+        <!-- 8 -->
+        <div class="spot-card">
+            <span class="spot-name">// UNIDAD DEPORTIVA EL SALITRE //</span>
+            <span class="spot-location">📍 Fontibón · Cra 68 # 63 - 00</span>
+            <p class="spot-desc">Complejo deportivo con skatepark amplio. Zona con mucho espacio y buena energía.</p>
+            <div class="spot-tags">
+                <span class="spot-tag highlight">🏟️ GRANDE</span>
+                <span class="spot-tag">🌳 ESPACIOSO</span>
+            </div>
+        </div>
+
+        <!-- 9 -->
+        <div class="spot-card">
+            <span class="spot-name">// PARQUE EL TUNAL //</span>
+            <span class="spot-location">📍 Tunjuelito · Cra 28 # 47A - 00</span>
+            <p class="spot-desc">Skatepark de concreto en el sur. Buen flujo y rampas para todos los niveles. Muy frecuentado por la comunidad local.</p>
+            <div class="spot-tags">
+                <span class="spot-tag">🛹 SUR</span>
+                <span class="spot-tag highlight">🔥 ACTIVO</span>
+            </div>
+        </div>
+
+        <!-- 10 -->
+        <div class="spot-card">
+            <span class="spot-name">// PARQUE SANTANDER //</span>
+            <span class="spot-location">📍 Chapinero · Calle 63 # 59A - 06</span>
+            <p class="spot-desc">Skatepark céntrico y bien ubicado. Ideal para sesiones rápidas después del colegio o trabajo.</p>
+            <div class="spot-tags">
+                <span class="spot-tag">📍 CÉNTRICO</span>
+                <span class="spot-tag highlight">⚡ RÁPIDO</span>
+            </div>
+        </div>
+
+        <!-- 11 -->
+        <div class="spot-card">
+            <span class="spot-name">// SKATEPARK BOWL 72 //</span>
+            <span class="spot-location">📍 Barrios Unidos · Calle 72 # 24 - 00</span>
+            <p class="spot-desc">Bowl clásico con buena profundidad. Perfecto para los amantes de las transiciones y el estilo vert.</p>
+            <div class="spot-tags">
+                <span class="spot-tag highlight">🌀 BOWL</span>
+                <span class="spot-tag">🔥 VERT</span>
+            </div>
+        </div>
+
+        <!-- 12 -->
+        <div class="spot-card">
+            <span class="spot-name">// SKATEPARK CALLE 51 A SUR //</span>
+            <span class="spot-location">📍 Kennedy · Calle 51 A Sur # 82 A - 16</span>
+            <p class="spot-desc">Skatepark en el sur con buena variedad de obstáculos. Comunidad local muy activa.</p>
+            <div class="spot-tags">
+                <span class="spot-tag">🛹 SUR</span>
+                <span class="spot-tag highlight">👥 COMUNIDAD</span>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- ======================================== -->
+    <!-- DIVIDER -->
+    <!-- ======================================== -->
+    <div class="divider">
+        <span>✕</span><span>✕</span><span>✕</span><span>✕</span><span>✕</span>
+        <span>✕</span><span>✕</span><span>✕</span><span>✕</span><span>✕</span>
+    </div>
+
+    <!-- ======================================== -->
+    <!-- FOOTER -->
+    <!-- ======================================== -->
+    <footer class="footer">
+        <p>✕ ZKATE SANITARIUM · 2026 ✕</p>
+        <p class="footer-small">sin reglas · con estilo · somos la escena</p>
+        <p class="footer-tiny">hecho en bogotá · underground · skate · independiente</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
