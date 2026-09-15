@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZKATE · EXPLORA</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=VT323&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos extra para botón refrescar */
+        .explora-controls {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px 0;
+            flex-wrap: wrap;
+        }
+        .explora-controls button {
+            font-family: 'VT323', monospace;
+            background: transparent;
+            border: 1px solid #333;
+            color: #ccc;
+            padding: 10px 30px;
+            font-size: 1.2rem;
+            letter-spacing: 4px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .explora-controls button:hover {
+            background: #fff;
+            color: #0a0a0a;
+            border-color: #fff;
+        }
+        .explora-count {
+            font-family: 'Special Elite', cursive;
+            color: #555;
+            letter-spacing: 2px;
+            font-size: 0.8rem;
+            padding: 10px 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ======================================== -->
+    <!-- HEADER CAÓTICO -->
+    <!-- ======================================== -->
+    <header class="header">
+        <div class="header-left">
+            <span class="ascii-art">[ ZKATE ]</span>
+            <span class="header-sub">SANITARIUM</span>
+        </div>
+        <div class="header-right">
+            <span class="date-stamp">24 / 8 / 2026 // 05:17:55 pm</span>
+        </div>
+    </header>
+
+    <!-- ======================================== -->
+    <!-- NAVEGACIÓN SUPERIOR -->
+    <!-- ======================================== -->
+    <nav class="top-nav">
+        <a href="index.html">compra en línea</a>
+        <span class="nav-sep">·</span>
+        <a href="skatecas.html">SkateCAS</a>
+        <span class="nav-sep">·</span>
+        <a href="sala.html">SALONDELACARNE</a>
+        <span class="nav-sep">·</span>
+        <a href="#">blog</a>
+        <span class="nav-sep">·</span>
+        <a href="#">111241</a>
+        <span class="nav-sep">·</span>
+        <a href="#">suscribete</a>
+        <span class="nav-sep">·</span>
+        <a href="#" class="boring">somos aburridos... y que?</a>
+    </nav>
+
+    <!-- ======================================== -->
+    <!-- CATEGORÍAS -->
+    <!-- ======================================== -->
+    <section class="categories">
+        <a href="abrigos.html">Abrigos</a>
+        <a href="hardware.html">Hardware</a>
+        <a href="accesorios.html">Accesorios</a>
+        <a href="camisetas.html">Camisetas</a>
+        <a href="galeria.html">Galería</a>
+        <a href="pantalones.html">Pantalones</a>
+        <a href="tenis.html">Tenis</a>
+        <a href="gorros.html">Gorros</a>
+        <a href="mochilas.html">Mochilas</a>
+        <a href="parches.html">Parches</a>
+    </section>
+
+    <!-- ======================================== -->
+    <!-- DIVIDER -->
+    <!-- ======================================== -->
+    <div class="divider">
+        <span>✕</span><span>✕</span><span>✕</span><span>✕</span><span>✕</span>
+        <span>✕</span><span>✕</span><span>✕</span><span>✕</span><span>✕</span>
+    </div>
+
+    <!-- ======================================== -->
+    <!-- TÍTULO Y CONTROLES -->
+    <!-- ======================================== -->
+    <div class="page-header">
+        <span class="page-title">// EXPLORA //</span>
+        <span class="page-count" id="productCount">[ 0 ]</span>
+    </div>
+
+    <div class="explora-controls">
+        <button onclick="location.reload()">↯ REVOLVER</button>
+        <button onclick="window.location.href='index.html'">↯ VOLVER</button>
+    </div>
+
+    <!-- ======================================== -->
+    <!-- GRID DE PRODUCTOS (se llena con JS) -->
+    <!-- ======================================== -->
+    <section class="product-grid" id="productGrid">
+        <!-- Generado por JavaScript -->
+    </section>
+
+    <!-- ======================================== -->
+    <!-- DIVIDER -->
+    <!-- ======================================== -->
+    <div class="divider">
+        <span>✕</span><span>✕</span><span>✕</span><span>✕</span><span>✕</span>
+        <span>✕</span><span>✕</span><span>✕</span><span>✕</span><span>✕</span>
+    </div>
+
+    <!-- ======================================== -->
+    <!-- FOOTER -->
+    <!-- ======================================== -->
+    <footer class="footer">
+        <p>✕ ZKATE SANITARIUM · 2026 ✕</p>
+        <p class="footer-small">sin reglas · con estilo · somos la escena</p>
+        <p class="footer-tiny">hecho en bogotá · underground · skate · independiente</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // ============================================================
+        //  PRODUCTOS: todos los productos de todas las categorías
+        //  (agregados manualmente para que funcionen sin base de datos)
+        // ============================================================
+        const todosLosProductos = [
+            // --- ABRIGOS (30) ---
+            { nombre: 'Hoodie Sanitarium', precio: '$180.000', sticker: '// NUEVO //' },
+            { nombre: 'Chaqueta Underground', precio: '$220.000', sticker: '✦ EDICIÓN ✦' },
+            { nombre: 'Chaleco Escena Local', precio: '$90.000', sticker: '-///-' },
+            { nombre: 'Camisa SkateCAS', precio: '$110.000', sticker: '// SKATE //' },
+            { nombre: 'Chaqueta Denim Ruido', precio: '$150.000', sticker: '⛓' },
+            { nombre: 'Hoodie Sin Reglas', precio: '$130.000', sticker: '// SIN REGLAS //' },
+            { nombre: 'Chaleco Bogotá', precio: '$85.000', sticker: '✦ BOG ✦' },
+            { nombre: 'Chaqueta Indie', precio: '$160.000', sticker: '// INDIE //' },
+            { nombre: 'Hoodie Callejero', precio: '$125.000', sticker: '-///- CALLE -///-' },
+            { nombre: 'Camisa Mosh', precio: '$100.000', sticker: '// MOSH //' },
+            { nombre: 'Chaqueta Parche', precio: '$140.000', sticker: '⛓ PUNK ⛓' },
+            { nombre: 'Chaleco Punk', precio: '$95.000', sticker: '✕' },
+            { nombre: 'Hoodie 2000s', precio: '$135.000', sticker: '// 2000s //' },
+            { nombre: 'Chaqueta Distorsión', precio: '$190.000', sticker: '✦ DISTORSIÓN ✦' },
+            { nombre: 'Hoodie Local', precio: '$115.000', sticker: '-///- LOCAL -///-' },
+            { nombre: 'Chaleco Skate', precio: '$80.000', sticker: '// SKATE //' },
+            { nombre: 'Camisa Underground', precio: '$105.000', sticker: '⛓ UNDER ⛓' },
+            { nombre: 'Chaqueta Escena', precio: '$170.000', sticker: '✦ ESCENA ✦' },
+            { nombre: 'Hoodie Ruido', precio: '$128.000', sticker: '// RUIDO //' },
+            { nombre: 'Chaleco Calle', precio: '$88.000', sticker: '-///- CALLE -///-' },
+            { nombre: 'Chaqueta Mosh', precio: '$155.000', sticker: '✕ MOSH ✕' },
+            { nombre: 'Hoodie Indie', precio: '$120.000', sticker: '// INDIE //' },
+            { nombre: 'Camisa Punk', precio: '$95.000', sticker: '⛓ PUNK ⛓' },
+            { nombre: 'Chaqueta Sanitarium', precio: '$210.000', sticker: '✦ SANITARIUM ✦' },
+            { nombre: 'Chaleco Distorsión', precio: '$92.000', sticker: '// DISTORSIÓN //' },
+            { nombre: 'Hoodie SkateCAS', precio: '$140.000', sticker: '-///- SKATECAS -///-' },
+            { nombre: 'Camisa Callejero', precio: '$100.000', sticker: '// CALLEJERO //' },
+            { nombre: 'Chaqueta 2000s', precio: '$175.000', sticker: '✦ 2000s ✦' },
+            { nombre: 'Chaleco Underground', precio: '$85.000', sticker: '⛓ UNDERGROUND ⛓' },
+            { nombre: 'Hoodie Bogotá', precio: '$125.000', sticker: '// BOGOTÁ //' },
+
+            // --- CAMISETAS (30) ---
+            { nombre: 'Camisa Sanitarium', precio: '$85.000', sticker: '// NUEVO //' },
+            { nombre: 'Camisa Underground', precio: '$90.000', sticker: '✦ EDICIÓN ✦' },
+            { nombre: 'Camisa Escena Local', precio: '$78.000', sticker: '-///-' },
+            { nombre: 'Camisa SkateCAS', precio: '$82.000', sticker: '// SKATE //' },
+            { nombre: 'Camisa Ruido', precio: '$75.000', sticker: '⛓' },
+            { nombre: 'Camisa Sin Reglas', precio: '$80.000', sticker: '// SIN REGLAS //' },
+            { nombre: 'Camisa Bogotá', precio: '$72.000', sticker: '✦ BOG ✦' },
+            { nombre: 'Camisa Indie', precio: '$77.000', sticker: '// INDIE //' },
+            { nombre: 'Camisa Callejera', precio: '$70.000', sticker: '-///- CALLE -///-' },
+            { nombre: 'Camisa Mosh', precio: '$88.000', sticker: '// MOSH //' },
+            { nombre: 'Camisa Punk', precio: '$85.000', sticker: '⛓ PUNK ⛓' },
+            { nombre: 'Camisa Distorsión', precio: '$92.000', sticker: '✕' },
+            { nombre: 'Camisa 2000s', precio: '$78.000', sticker: '// 2000s //' },
+            { nombre: 'Camisa Local', precio: '$74.000', sticker: '✦ LOCAL ✦' },
+            { nombre: 'Camisa Skate', precio: '$80.000', sticker: '-///- SKATE -///-' },
+            { nombre: 'Camisa Ruido', precio: '$76.000', sticker: '// RUIDO //' },
+            { nombre: 'Camisa Underground', precio: '$90.000', sticker: '⛓ UNDER ⛓' },
+            { nombre: 'Camisa Escena', precio: '$82.000', sticker: '✦ ESCENA ✦' },
+            { nombre: 'Camisa Calle', precio: '$68.000', sticker: '// CALLE //' },
+            { nombre: 'Camisa Mosh', precio: '$88.000', sticker: '-///- MOSH -///-' },
+            { nombre: 'Camisa Punk', precio: '$85.000', sticker: '✕ PUNK ✕' },
+            { nombre: 'Camisa Indie', precio: '$77.000', sticker: '// INDIE //' },
+            { nombre: 'Camisa 2000s', precio: '$80.000', sticker: '⛓ 2000s ⛓' },
+            { nombre: 'Camisa Sanitarium', precio: '$95.000', sticker: '✦ SANITARIUM ✦' },
+            { nombre: 'Camisa Distorsión', precio: '$92.000', sticker: '// DISTORSIÓN //' },
+            { nombre: 'Camisa SkateCAS', precio: '$84.000', sticker: '-///- SKATECAS -///-' },
+            { nombre: 'Camisa Callejero', precio: '$70.000', sticker: '// CALLEJERO //' },
+            { nombre: 'Camisa Underground', precio: '$90.000', sticker: '✦ UNDERGROUND ✦' },
+            { nombre: 'Camisa Bogotá', precio: '$72.000', sticker: '⛓ BOGOTÁ ⛓' },
+            { nombre: 'Camisa Escena Local', precio: '$78.000', sticker: '// ESCENA LOCAL //' },
+
+            // --- HARDWARE (35) ---
+            { nombre: 'Tabla Sanitarium 8.0', precio: '$250.000', sticker: '// NUEVO //' },
+            { nombre: 'Tabla Underground 8.25', precio: '$270.000', sticker: '✦ PRO ✦' },
+            { nombre: 'Tabla Escena Local 7.75', precio: '$230.000', sticker: '-///-' },
+            { nombre: 'Tabla SkateCAS 8.5', precio: '$290.000', sticker: '// SKATE //' },
+            { nombre: 'Tabla Ruido 8.125', precio: '$240.000', sticker: '⛓' },
+            { nombre: 'Tabla Sin Reglas 8.0', precio: '$245.000', sticker: '// SIN REGLAS //' },
+            { nombre: 'Tabla Bogotá 8.375', precio: '$260.000', sticker: '✦ BOG ✦' },
+            { nombre: 'Tabla Indie 8.0', precio: '$235.000', sticker: '// INDIE //' },
+            { nombre: 'Tabla Callejera 8.25', precio: '$255.000', sticker: '-///- CALLE -///-' },
+            { nombre: 'Tabla Mosh 7.875', precio: '$225.000', sticker: '// MOSH //' },
+            { nombre: 'Trucks Sanitarium (par)', precio: '$120.000', sticker: '⛓ TRUCKS ⛓' },
+            { nombre: 'Trucks Underground (par)', precio: '$135.000', sticker: '✦ TRUCKS ✦' },
+            { nombre: 'Trucks Escena Local (par)', precio: '$110.000', sticker: '-///- TRUCKS -///-' },
+            { nombre: 'Ruedas Sanitarium 52mm', precio: '$80.000', sticker: '// RUEDAS //' },
+            { nombre: 'Ruedas Underground 54mm', precio: '$90.000', sticker: '✦ RUEDAS ✦' },
+            { nombre: 'Ruedas Escena Local 56mm', precio: '$85.000', sticker: '-///- RUEDAS -///-' },
+            { nombre: 'Rodamientos ABEC-5 Sanitarium', precio: '$50.000', sticker: '// RODAMIENTOS //' },
+            { nombre: 'Rodamientos ABEC-7 Underground', precio: '$70.000', sticker: '✦ RODAMIENTOS ✦' },
+            { nombre: 'Rodamientos ABEC-9 Escena', precio: '$95.000', sticker: '-///- RODAMIENTOS -///-' },
+            { nombre: 'Multiherramienta Skate', precio: '$35.000', sticker: '✕ HERRAMIENTA ✕' },
+            { nombre: 'Ejes (trucks) Sanitarium', precio: '$45.000', sticker: '// EJES //' },
+            { nombre: 'Tornillos para tablas (8uds)', precio: '$12.000', sticker: '✦ TORNILLOS ✦' },
+            { nombre: 'Lija para tabla (x2)', precio: '$18.000', sticker: '-///- LIMA -///-' },
+            { nombre: 'Protectores de cola', precio: '$20.000', sticker: '// PROTECTORES //' },
+            { nombre: 'Rodamientos ABEC-3 (básico)', precio: '$35.000', sticker: '✦ RODAMIENTOS ✦' },
+            { nombre: 'Tabla Calle 7.875', precio: '$220.000', sticker: '// TABLA //' },
+            { nombre: 'Trucks Indie (par)', precio: '$115.000', sticker: '⛓ TRUCKS ⛓' },
+            { nombre: 'Ruedas Mosh 53mm', precio: '$82.000', sticker: '✦ RUEDAS ✦' },
+            { nombre: 'Rodamientos Sin Reglas (8uds)', precio: '$55.000', sticker: '-///- RODAMIENTOS -///-' },
+            { nombre: 'Herramienta de presión', precio: '$28.000', sticker: '✕ TOOL ✕' },
+            { nombre: 'Protector de nariz', precio: '$15.000', sticker: '// PROTECTOR //' },
+            { nombre: 'Tabla Distorsión 8.0', precio: '$260.000', sticker: '✦ TABLA ✦' },
+            { nombre: 'Trucks Callejeros (par)', precio: '$125.000', sticker: '-///- TRUCKS -///-' },
+            { nombre: 'Ruedas Bogotá 55mm', precio: '$88.000', sticker: '// RUEDAS //' },
+            { nombre: 'Rodamientos Elite (ABEC-9)', precio: '$100.000', sticker: '⛓ RODAMIENTOS ⛓' },
+
+            // --- ACCESORIOS (50) ---
+            { nombre: 'Cinturón Sanitarium', precio: '$45.000', sticker: '// NUEVO //' },
+            { nombre: 'Pulsera Underground', precio: '$28.000', sticker: '✦ EDICIÓN ✦' },
+            { nombre: 'Collar Escena Local', precio: '$32.000', sticker: '-///-' },
+            { nombre: 'Anillo SkateCAS', precio: '$22.000', sticker: '// SKATE //' },
+            { nombre: 'Cadena Ruido', precio: '$38.000', sticker: '⛓' },
+            { nombre: 'Set de Pins Sin Reglas (x3)', precio: '$25.000', sticker: '// SIN REGLAS //' },
+            { nombre: 'Llavero Bogotá', precio: '$18.000', sticker: '✦ BOG ✦' },
+            { nombre: 'Bandana Indie', precio: '$20.000', sticker: '// INDIE //' },
+            { nombre: 'Cinturón Callejero', precio: '$42.000', sticker: '-///- CALLE -///-' },
+            { nombre: 'Pulsera Mosh', precio: '$26.000', sticker: '// MOSH //' },
+            { nombre: 'Collar Punk', precio: '$35.000', sticker: '⛓ PUNK ⛓' },
+            { nombre: 'Set de Parches Distorsión', precio: '$30.000', sticker: '✕' },
+            { nombre: 'Bandana 2000s', precio: '$22.000', sticker: '// 2000s //' },
+            { nombre: 'Llavero Local', precio: '$15.000', sticker: '✦ LOCAL ✦' },
+            { nombre: 'Anillo Skate', precio: '$20.000', sticker: '-///- SKATE -///-' },
+            { nombre: 'Cinturón Ruido', precio: '$48.000', sticker: '// RUIDO //' },
+            { nombre: 'Collar Underground', precio: '$40.000', sticker: '⛓ UNDER ⛓' },
+            { nombre: 'Set de Pins Escena (x5)', precio: '$35.000', sticker: '✦ ESCENA ✦' },
+            { nombre: 'Pulsera Calle', precio: '$24.000', sticker: '// CALLE //' },
+            { nombre: 'Cadena Mosh', precio: '$42.000', sticker: '-///- MOSH -///-' },
+            { nombre: 'Anillo Punk', precio: '$18.000', sticker: '✕ PUNK ✕' },
+            { nombre: 'Cinturón Indie', precio: '$44.000', sticker: '// INDIE //' },
+            { nombre: 'Pulsera 2000s', precio: '$28.000', sticker: '⛓ 2000s ⛓' },
+            { nombre: 'Llavero Sanitarium', precio: '$20.000', sticker: '✦ SANITARIUM ✦' },
+            { nombre: 'Bandana Distorsión', precio: '$25.000', sticker: '// DISTORSIÓN //' },
+            { nombre: 'Set de Parches SkateCAS', precio: '$32.000', sticker: '-///- SKATECAS -///-' },
+            { nombre: 'Cinturón Callejero', precio: '$46.000', sticker: '// CALLEJERO //' },
+            { nombre: 'Collar Underground', precio: '$38.000', sticker: '✦ UNDERGROUND ✦' },
+            { nombre: 'Pulsera Bogotá', precio: '$22.000', sticker: '⛓ BOGOTÁ ⛓' },
+            { nombre: 'Anillo Escena Local', precio: '$20.000', sticker: '// ESCENA LOCAL //' },
+            { nombre: 'Cadena Sanitarium', precio: '$50.000', sticker: '✕' },
+            { nombre: 'Set Pins Ruido (x4)', precio: '$30.000', sticker: '// PINS //' },
+            { nombre: 'Bandana Punk', precio: '$18.000', sticker: '-///- BANDANA -///-' },
+            { nombre: 'Llavero Mosh', precio: '$16.000', sticker: '✦ LLAVERO ✦' },
+            { nombre: 'Cinturón Underground', precio: '$48.000', sticker: '⛓' },
+            { nombre: 'Anillo Sin Reglas', precio: '$22.000', sticker: '// ANILLO //' },
+            { nombre: 'Pulsera Distorsión', precio: '$26.000', sticker: '✦ PULSERA ✦' },
+            { nombre: 'Collar Calle', precio: '$34.000', sticker: '-///- COLLAR -///-' },
+            { nombre: 'Cadena Indie', precio: '$40.000', sticker: '// CADENA //' },
+            { nombre: 'Set de Parches 2000s', precio: '$28.000', sticker: '⛓ PATCH ⛓' },
+            { nombre: 'Bandana Bogotá', precio: '$20.000', sticker: '✕ BANDANA ✕' },
+            { nombre: 'Llavero Underground', precio: '$18.000', sticker: '// LLAVERO //' },
+            { nombre: 'Cinturón Skate', precio: '$44.000', sticker: '✦ CINTURÓN ✦' },
+            { nombre: 'Set Pins Sanitarium (x6)', precio: '$38.000', sticker: '-///- PINS -///-' },
+            { nombre: 'Pulsera Escena Local', precio: '$24.000', sticker: '// PULSERA //' },
+            { nombre: 'Anillo Underground', precio: '$25.000', sticker: '⛓ ANILLO ⛓' },
+            { nombre: 'Collar Sin Reglas', precio: '$36.000', sticker: '✦ COLLAR ✦' },
+            { nombre: 'Cadena Punk', precio: '$45.000', sticker: '-///- CADENA -///-' },
+            { nombre: 'Parche Mosh', precio: '$12.000', sticker: '// PATCH //' },
+            { nombre: 'Set de Llaveros Bogotá', precio: '$25.000', sticker: '⛓ BOG ⛓' },
+
+            // --- PANTALONES (30) ---
+            { nombre: 'Pantalón Sanitarium', precio: '$120.000', sticker: '// NUEVO //' },
+            { nombre: 'Pantalón Underground', precio: '$135.000', sticker: '✦ EDICIÓN ✦' },
+            { nombre: 'Pantalón Escena Local', precio: '$110.000', sticker: '-///-' },
+            { nombre: 'Pantalón SkateCAS', precio: '$125.000', sticker: '// SKATE //' },
+            { nombre: 'Pantalón Ruido', precio: '$115.000', sticker: '⛓' },
+            { nombre: 'Pantalón Sin Reglas', precio: '$130.000', sticker: '// SIN REGLAS //' },
+            { nombre: 'Pantalón Bogotá', precio: '$112.000', sticker: '✦ BOG ✦' },
+            { nombre: 'Pantalón Indie', precio: '$118.000', sticker: '// INDIE //' },
+            { nombre: 'Pantalón Callejero', precio: '$108.000', sticker: '-///- CALLE -///-' },
+            { nombre: 'Pantalón Mosh', precio: '$140.000', sticker: '// MOSH //' },
+            { nombre: 'Pantalón Punk', precio: '$125.000', sticker: '⛓ PUNK ⛓' },
+            { nombre: 'Pantalón Distorsión', precio: '$145.000', sticker: '✕' },
+            { nombre: 'Pantalón 2000s', precio: '$122.000', sticker: '// 2000s //' },
+            { nombre: 'Pantalón Local', precio: '$105.000', sticker: '✦ LOCAL ✦' },
+            { nombre: 'Pantalón Skate', precio: '$128.000', sticker: '-///- SKATE -///-' },
+            { nombre: 'Pantalón Ruido', precio: '$118.000', sticker: '// RUIDO //' },
+            { nombre: 'Pantalón Underground', precio: '$138.000', sticker: '⛓ UNDER ⛓' },
+            { nombre: 'Pantalón Escena', precio: '$132.000', sticker: '✦ ESCENA ✦' },
+            { nombre: 'Pantalón Calle', precio: '$110.000', sticker: '// CALLE //' },
+            { nombre: 'Pantalón Mosh', precio: '$142.000', sticker: '-///- MOSH -///-' },
+            { nombre: 'Pantalón Punk', precio: '$125.000', sticker: '✕ PUNK ✕' },
+            { nombre: 'Pantalón Indie', precio: '$115.000', sticker: '// INDIE //' },
+            { nombre: 'Pantalón 2000s', precio: '$120.000', sticker: '⛓ 2000s ⛓' },
+            { nombre: 'Pantalón Sanitarium', precio: '$150.000', sticker: '✦ SANITARIUM ✦' },
+            { nombre: 'Pantalón Distorsión', precio: '$148.000', sticker: '// DISTORSIÓN //' },
+            { nombre: 'Pantalón SkateCAS', precio: '$130.000', sticker: '-///- SKATECAS -///-' },
+            { nombre: 'Pantalón Callejero', precio: '$108.000', sticker: '// CALLEJERO //' },
+            { nombre: 'Pantalón Underground', precio: '$135.000', sticker: '✦ UNDERGROUND ✦' },
+            { nombre: 'Pantalón Bogotá', precio: '$112.000', sticker: '⛓ BOGOTÁ ⛓' },
+            { nombre: 'Pantalón Escena Local', precio: '$110.000', sticker: '// ESCENA LOCAL //' },
+
+            // --- TENIS (50) ---
+            { nombre: 'Tenis Sanitarium', precio: '$220.000', sticker: '// NUEVO //' },
+            { nombre: 'Tenis Underground', precio: '$250.000', sticker: '✦ EDICIÓN ✦' },
+            { nombre: 'Tenis Escena Local', precio: '$190.000', sticker: '-///-' },
+            { nombre: 'Tenis SkateCAS', precio: '$235.000', sticker: '// SKATE //' },
+            { nombre: 'Tenis Ruido', precio: '$205.000', sticker: '⛓' },
+            { nombre: 'Tenis Sin Reglas', precio: '$230.000', sticker: '// SIN REGLAS //' },
+            { nombre: 'Tenis Bogotá', precio: '$195.000', sticker: '✦ BOG ✦' },
+            { nombre: 'Tenis Indie', precio: '$210.000', sticker: '// INDIE //' },
+            { nombre: 'Tenis Callejero', precio: '$185.000', sticker: '-///- CALLE -///-' },
+            { nombre: 'Tenis Mosh', precio: '$245.000', sticker: '// MOSH //' },
+            { nombre: 'Tenis Punk', precio: '$215.000', sticker: '⛓ PUNK ⛓' },
+            { nombre: 'Tenis Distorsión', precio: '$260.000', sticker: '✕' },
+            { nombre: 'Tenis 2000s', precio: '$225.000', sticker: '// 2000s //' },
+            { nombre: 'Tenis Local', precio: '$180.000', sticker: '✦ LOCAL ✦' },
+            { nombre: 'Tenis Skate', precio: '$240.000', sticker: '-///- SKATE -///-' },
+            { nombre: 'Tenis Ruido', precio: '$200.000', sticker: '// RUIDO //' },
+            { nombre: 'Tenis Underground', precio: '$255.000', sticker: '⛓ UNDER ⛓' },
+            { nombre: 'Tenis Escena', precio: '$230.000', sticker: '✦ ESCENA ✦' },
+            { nombre: 'Tenis Calle', precio: '$190.000', sticker: '// CALLE //' },
+            { nombre: 'Tenis Mosh', precio: '$248.000', sticker: '-///- MOSH -///-' },
+            { nombre: 'Tenis Punk', precio: '$215.000', sticker: '✕ PUNK ✕' },
+            { nombre: 'Tenis Indie', precio: '$210.000', sticker: '// INDIE //' },
+            { nombre: 'Tenis 2000s', precio: '$225.000', sticker: '⛓ 2000s ⛓' },
+            { nombre: 'Tenis Sanitarium', precio: '$270.000', sticker: '✦ SANITARIUM ✦' },
+            { nombre: 'Tenis Distorsión', precio: '$260.000', sticker: '// DISTORSIÓN //' },
+            { nombre: 'Tenis SkateCAS', precio: '$238.000', sticker: '-///- SKATECAS -///-' },
+            { nombre: 'Tenis Callejero', precio: '$185.000', sticker: '// CALLEJERO //' },
+            { nombre: 'Tenis Underground', precio: '$250.000', sticker: '✦ UNDERGROUND ✦' },
+            { nombre: 'Tenis Bogotá', precio: '$195.000', sticker: '⛓ BOGOTÁ ⛓' },
+            { nombre: 'Tenis Escena Local', precio: '$190.000', sticker: '// ESCENA LOCAL //' },
+            { nombre: 'Tenis Caña Alta Sanitarium', precio: '$280.000', sticker: '✕ CAÑA ALTA ✕' },
+            { nombre: 'Tenis Caña Baja Underground', precio: '$230.000', sticker: '// CAÑA BAJA //' },
+            { nombre: 'Tenis Suela Gruesa Mosh', precio: '$255.000', sticker: '-///- SUELA GRUESA -///-' },
+            { nombre: 'Tenis Suela Fina Skate', precio: '$210.000', sticker: '✦ SUELA FINA ✦' },
+            { nombre: 'Tenis Cuero Sanitarium', precio: '$290.000', sticker: '⛓ DE CUERO ⛓' },
+            { nombre: 'Tenis Lona Escena', precio: '$195.000', sticker: '// DE LONA //' },
+            { nombre: 'Tenis Impermeable Bogotá', precio: '$240.000', sticker: '✦ IMPERMEABLE ✦' },
+            { nombre: 'Tenis Transpirable Indie', precio: '$205.000', sticker: '-///- TRANSPIRABLE -///-' },
+            { nombre: 'Tenis Negro Sin Reglas', precio: '$225.000', sticker: '// NEGRO //' },
+            { nombre: 'Tenis Blanco Punk', precio: '$220.000', sticker: '✕ BLANCO ✕' },
+            { nombre: 'Tenis Rojo Distorsión', precio: '$245.000', sticker: '⛓ ROJO ⛓' },
+            { nombre: 'Tenis Azul Mosh', precio: '$235.000', sticker: '✦ AZUL ✦' },
+            { nombre: 'Tenis Verde Callejero', precio: '$215.000', sticker: '-///- VERDE -///-' },
+            { nombre: 'Tenis Gris Underground', precio: '$230.000', sticker: '// GRIS //' },
+            { nombre: 'Tenis Café SkateCAS', precio: '$238.000', sticker: '⛓ CAFE ⛓' },
+            { nombre: 'Tenis Marfil Sanitarium', precio: '$260.000', sticker: '✦ MARFIL ✦' },
+            { nombre: 'Tenis Borde Rojo Escena', precio: '$242.000', sticker: '-///- BORDE ROJO -///-' },
+            { nombre: 'Tenis Talón Reforzado Ruido', precio: '$250.000', sticker: '// TALÓN REFORZADO //' },
+            { nombre: 'Tenis Puntera Reforzada Punk', precio: '$255.000', sticker: '✕ PUNTERA ✕' },
+            { nombre: 'Tenis Edición Limitada Sanitarium', precio: '$320.000', sticker: '✦ EDICIÓN LIMITADA ✦' },
+
+            // --- GORROS (15) ---
+            { nombre: 'Gorra Sanitarium', precio: '$45.000', sticker: '// NUEVO //' },
+            { nombre: 'Gorra Underground', precio: '$50.000', sticker: '✦ EDICIÓN ✦' },
+            { nombre: 'Gorra Escena Local', precio: '$40.000', sticker: '-///-' },
+            { nombre: 'Gorra SkateCAS', precio: '$48.000', sticker: '// SKATE //' },
+            { nombre: 'Gorra Ruido', precio: '$42.000', sticker: '⛓' },
+            { nombre: 'Gorra Sin Reglas', precio: '$46.000', sticker: '// SIN REGLAS //' },
+            { nombre: 'Gorra Bogotá', precio: '$38.000', sticker: '✦ BOG ✦' },
+            { nombre: 'Gorra Indie', precio: '$42.000', sticker: '// INDIE //' },
+            { nombre: 'Gorra Callejera', precio: '$36.000', sticker: '-///- CALLE -///-' },
+            { nombre: 'Gorra Mosh', precio: '$52.000', sticker: '// MOSH //' },
+            { nombre: 'Gorra Punk', precio: '$44.000', sticker: '⛓ PUNK ⛓' },
+            { nombre: 'Gorra Distorsión', precio: '$55.000', sticker: '✕' },
+            { nombre: 'Gorra 2000s', precio: '$48.000', sticker: '// 2000s //' },
+            { nombre: 'Gorra Local', precio: '$35.000', sticker: '✦ LOCAL ✦' },
+            { nombre: 'Gorra Escena', precio: '$42.000', sticker: '-///- ESCENA -///-' },
+
+            // --- MOCHILAS (12) ---
+            { nombre: 'Mochila Sanitarium', precio: '$85.000', sticker: '// NUEVO //' },
+            { nombre: 'Mochila Underground', precio: '$95.000', sticker: '✦ EDICIÓN ✦' },
+            { nombre: 'Mochila Escena Local', precio: '$75.000', sticker: '-///-' },
+            { nombre: 'Mochila SkateCAS', precio: '$90.000', sticker: '// SKATE //' },
+            { nombre: 'Mochila Ruido', precio: '$78.000', sticker: '⛓' },
+            { nombre: 'Mochila Sin Reglas', precio: '$88.000', sticker: '// SIN REGLAS //' },
+            { nombre: 'Mochila Bogotá', precio: '$72.000', sticker: '✦ BOG ✦' },
+            { nombre: 'Mochila Indie', precio: '$80.000', sticker: '// INDIE //' },
+            { nombre: 'Mochila Callejera', precio: '$68.000', sticker: '-///- CALLE -///-' },
+            { nombre: 'Mochila Mosh', precio: '$98.000', sticker: '// MOSH //' },
+            { nombre: 'Mochila Punk', precio: '$82.000', sticker: '⛓ PUNK ⛓' },
+            { nombre: 'Mochila Distorsión', precio: '$105.000', sticker: '✕' },
+
+            // --- PARCHES (67) ---
+            { nombre: 'Parche Sanitarium', precio: '$8.000', sticker: '// NUEVO //' },
+            { nombre: 'Parche Underground', precio: '$10.000', sticker: '✦ EDICIÓN ✦' },
+            { nombre: 'Parche Escena Local', precio: '$7.000', sticker: '-///-' },
+            { nombre: 'Parche SkateCAS', precio: '$9.000', sticker: '// SKATE //' },
+            { nombre: 'Parche Ruido', precio: '$8.000', sticker: '⛓' },
+            { nombre: 'Parche Sin Reglas', precio: '$10.000', sticker: '// SIN REGLAS //' },
+            { nombre: 'Parche Bogotá', precio: '$7.000', sticker: '✦ BOG ✦' },
+            { nombre: 'Parche Indie', precio: '$8.000', sticker: '// INDIE //' },
+            { nombre: 'Parche Callejero', precio: '$6.000', sticker: '-///- CALLE -///-' },
+            { nombre: 'Parche Mosh', precio: '$12.000', sticker: '// MOSH //' },
+            { nombre: 'Parche Punk', precio: '$10.000', sticker: '⛓ PUNK ⛓' },
+            { nombre: 'Parche Distorsión', precio: '$11.000', sticker: '✕' },
+            { nombre: 'Parche 2000s', precio: '$9.000', sticker: '// 2000s //' },
+            { nombre: 'Parche Local', precio: '$6.000', sticker: '✦ LOCAL ✦' },
+            { nombre: 'Parche Skate', precio: '$8.000', sticker: '-///- SKATE -///-' },
+            { nombre: 'Parche RUIDO', precio: '$8.000', sticker: '// RUIDO //' },
+            { nombre: 'Parche UNDER', precio: '$10.000', sticker: '⛓ UNDER ⛓' },
+            { nombre: 'Parche Escena', precio: '$9.000', sticker: '✦ ESCENA ✦' },
+            { nombre: 'Parche Calle', precio: '$7.000', sticker: '// CALLE //' },
+            { nombre: 'Parche MOSH', precio: '$12.000', sticker: '-///- MOSH -///-' },
+            { nombre: 'Parche PUNK', precio: '$10.000', sticker: '✕ PUNK ✕' },
+            { nombre: 'Parche INDIE', precio: '$8.000', sticker: '// INDIE //' },
+            { nombre: 'Parche 2000s', precio: '$9.000', sticker: '⛓ 2000s ⛓' },
+            { nombre: 'Parche Sanitarium', precio: '$10.000', sticker: '✦ SANITARIUM ✦' },
+            { nombre: 'Parche Distorsión', precio: '$11.000', sticker: '// DISTORSIÓN //' },
+            { nombre: 'Parche SkateCAS', precio: '$9.000', sticker: '-///- SKATECAS -///-' },
+            { nombre: 'Parche Callejero', precio: '$6.000', sticker: '// CALLEJERO //' },
+            { nombre: 'Parche Underground', precio: '$10.000', sticker: '✦ UNDERGROUND ✦' },
+            { nombre: 'Parche Bogotá', precio: '$7.000', sticker: '⛓ BOGOTÁ ⛓' },
+            { nombre: 'Parche Escena Local', precio: '$7.000', sticker: '// ESCENA LOCAL //' },
+            { nombre: 'Parche Caña Alta', precio: '$12.000', sticker: '✕ CAÑA ALTA ✕' },
+            { nombre: 'Parche Caña Baja', precio: '$10.000', sticker: '// CAÑA BAJA //' },
+            { nombre: 'Parche Suela Gruesa', precio: '$11.000', sticker: '-///- SUELA GRUESA -///-' },
+            { nombre: 'Parche Suela Fina', precio: '$9.000', sticker: '✦ SUELA FINA ✦' },
+            { nombre: 'Parche Cuero', precio: '$13.000', sticker: '⛓ DE CUERO ⛓' },
+            { nombre: 'Parche Lona', precio: '$8.000', sticker: '// DE LONA //' },
+            { nombre: 'Parche Impermeable', precio: '$10.000', sticker: '✦ IMPERMEABLE ✦' },
+            { nombre: 'Parche Transpirable', precio: '$9.000', sticker: '-///- TRANSPIRABLE -///-' },
+            { nombre: 'Parche Negro', precio: '$9.000', sticker: '// NEGRO //' },
+            { nombre: 'Parche Blanco', precio: '$9.000', sticker: '✕ BLANCO ✕' },
+            { nombre: 'Parche Rojo', precio: '$10.000', sticker: '⛓ ROJO ⛓' },
+            { nombre: 'Parche Azul', precio: '$10.000', sticker: '✦ AZUL ✦' },
+            { nombre: 'Parche Verde', precio: '$9.000', sticker: '-///- VERDE -///-' },
+            { nombre: 'Parche Gris', precio: '$9.000', sticker: '// GRIS //' },
+            { nombre: 'Parche Café', precio: '$10.000', sticker: '⛓ CAFE ⛓' },
+            { nombre: 'Parche Marfil', precio: '$11.000', sticker: '✦ MARFIL ✦' },
+            { nombre: 'Parche Borde Rojo', precio: '$10.000', sticker: '-///- BORDE ROJO -///-' },
+            { nombre: 'Parche Talón Reforzado', precio: '$11.000', sticker: '// TALÓN REFORZADO //' },
+            { nombre: 'Parche Puntera Reforzada', precio: '$11.000', sticker: '✕ PUNTERA ✕' },
+            { nombre: 'Parche Edición Limitada', precio: '$15.000', sticker: '✦ EDICIÓN LIMITADA ✦' },
+            { nombre: 'Parche MOSH', precio: '$12.000', sticker: '// MOSH //' },
+            { nombre: 'Parche PUNK', precio: '$10.000', sticker: '⛓ PUNK ⛓' },
+            { nombre: 'Parche DISTORSIÓN', precio: '$11.000', sticker: '✕' },
+            { nombre: 'Parche 2000s', precio: '$9.000', sticker: '// 2000s //' },
+            { nombre: 'Parche LOCAL', precio: '$6.000', sticker: '✦ LOCAL ✦' },
+            { nombre: 'Parche SKATE', precio: '$8.000', sticker: '-///- SKATE -///-' },
+            { nombre: 'Parche RUIDO', precio: '$8.000', sticker: '// RUIDO //' },
+            { nombre: 'Parche UNDER', precio: '$10.000', sticker: '⛓ UNDER ⛓' },
+            { nombre: 'Parche ESCENA', precio: '$9.000', sticker: '✦ ESCENA ✦' },
+            { nombre: 'Parche CALLE', precio: '$7.000', sticker: '// CALLE //' },
+            { nombre: 'Parche MOSH', precio: '$12.000', sticker: '-///- MOSH -///-' },
+            { nombre: 'Parche PUNK', precio: '$10.000', sticker: '✕ PUNK ✕' },
+            { nombre: 'Parche INDIE', precio: '$8.000', sticker: '// INDIE //' },
+            { nombre: 'Parche 2000s', precio: '$9.000', sticker: '⛓ 2000s ⛓' },
+            { nombre: 'Parche SANITARIUM', precio: '$10.000', sticker: '✦ SANITARIUM ✦' },
+            { nombre: 'Parche DISTORSIÓN', precio: '$11.000', sticker: '// DISTORSIÓN //' },
+            { nombre: 'Parche SKATECAS', precio: '$9.000', sticker: '-///- SKATECAS -///-' }
+        ];
+
+        // ============================================================
+        //  FUNCIÓN PARA MEZCLAR ARRAY (Fisher-Yates)
+        // ============================================================
+        function shuffleArray(array) {
+            const a = [...array];
+            for (let i = a.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [a[i], a[j]] = [a[j], a[i]];
+            }
+            return a;
+        }
+
+        // ============================================================
+        //  RENDERIZAR PRODUCTOS
+        // ============================================================
+        function renderProductos(productos) {
+            const grid = document.getElementById('productGrid');
+            const count = document.getElementById('productCount');
+            count.textContent = `[ ${productos.length} ]`;
+
+            let html = '';
+            productos.forEach(p => {
+                html += `
+                    <div class="product-card">
+                        <div class="product-img">
+                            <span class="product-sticker">${p.sticker || '//'}</span>
+                        </div>
+                        <div class="product-info">
+                            <span class="product-name">${p.nombre}</span>
+                            <span class="product-price">${p.precio}</span>
+                            <a href="#" class="product-buy">↯ comprar</a>
+                        </div>
+                    </div>
+                `;
+            });
+            grid.innerHTML = html;
+        }
+
+        // ============================================================
+        //  EJECUTAR: mezclar y mostrar
+        // ============================================================
+        document.addEventListener('DOMContentLoaded', () => {
+            const mezclados = shuffleArray(todosLosProductos);
+            renderProductos(mezclados);
+        });
+    </script>
+
+</body>
+</html>
